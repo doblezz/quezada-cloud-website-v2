@@ -1,0 +1,190 @@
+@import '@styles/_variables.scss';
+
+.swiper {
+    width: 100%;
+    height: 50vh;
+    transition: 250ms linear;
+    z-index: 0 !important;
+    position: absolute;
+    
+}
+
+
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    object-fit: cover;
+    background-position: center center;
+    background-size: cover;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Container item Swipper */
+
+.grid-container-swipper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    /* Ancho total del grid */
+    padding: 0 10%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 65% 35%;
+    /* Primera columna ocupa el 65%, segunda el 35% */
+    color: white;
+    z-index: 0 !important;
+}
+
+.swiper-container {
+    position: absolute;
+    z-index: 0 !important; /* Asegura que el contenedor de Swiper esté en la parte inferior */
+  }
+  
+
+
+.column-1-swipper {
+    padding-bottom: 7%;
+    align-self: self-end;
+}
+
+.column-1-swipper>p {
+    max-width: 50%;
+    min-width: 200px;
+    text-align: start;
+    font-size: 19px;
+    font-weight: 500;
+    font-style: italic;
+    padding: 5px 10px;
+
+    background: rgb(0, 0, 0);
+    background: -moz-linear-gradient(90deg, rgba(0, 0, 0, 0.4542191876750701) 87%, rgba(0, 153, 255, 0) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 0.4542191876750701) 87%, rgba(0, 153, 255, 0) 100%);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.4542191876750701) 87%, rgba(0, 153, 255, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#0099ff", GradientType=1);
+}
+
+.barra_br {
+    width: 50%;
+    height: 2px;
+    margin: 15px 0 5px 0;
+    background-color: #fff;
+    border-radius: 3px;
+}
+
+.constainer_solicitar_tasa_swipper {
+    display: flex;
+    padding: 10px 0;
+}
+
+
+.column-2-swipper {
+    align-self: center;
+    align-self: self-end;
+    padding-bottom: 20%;
+}
+
+.column-2-swipper .container-sib-swiper {
+    width: 50%;
+    margin: auto;
+}
+
+/* Animacion del contenedor del details */
+.animation-container {
+    position: absolute;
+    bottom: 22px;
+    left: 0;
+    width: 50%;
+    height: 150px;
+    transform: translateX(22%);
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.animation-show{
+    opacity: 0;
+}
+
+.swiper-slide-active .animation-show {
+    width: max-content;
+    padding: 10px 15px;
+    height: auto;
+    background-color: rgba(113, 206, 67, 0.95);
+    color: white;
+    /* Cambia este color al que desees */
+    opacity: 0;
+    animation: aparecer 400ms 1.2s forwards, desaparecer 400ms 7s forwards;
+}
+
+
+/* Animacion del item details */
+@keyframes aparecer {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes desaparecer {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(100%);
+      display: none;
+    }
+  }
+
+/* screen 1290px - monitor de 19 pulgadas */
+@media (max-width: 1280px) {
+    .swiper {
+        height: 60vh;
+    }
+}
+
+/* screen 1290px - monitor de 19 pulgadas */
+@media (max-width: 460px) {
+    .swiper {
+        height: 50vh;
+    }
+
+    .column-1-swipper {
+        padding-bottom: 25%;
+    }
+
+    .column-2-swipper {
+        align-self: center;
+        padding-top: 35%;
+    }
+
+    .column-2-swipper .container-sib-swiper {
+        width: 100%;
+    }
+
+    .animation-container{
+        width: 70%;
+    }
+
+}

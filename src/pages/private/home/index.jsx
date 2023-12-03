@@ -7,6 +7,7 @@ import header from '@assets/title/index.json'
 // import ChangeDivisas from "../components/divisas/ChangeDivisas";
 // import CHome from "../components/content-home/CHome";
 // import Loading from "../components/pageLoading/Loading";
+import HeaderSlider from "@components/HeaderSlider";
 
 const Home = () => {
 
@@ -17,7 +18,10 @@ const Home = () => {
       title={header.home.title}
       description={header.home.description}
     />
-     <h1>Hello World!</h1>
+
+    <HeaderSlider/>
+
+
     </>
   );
 };

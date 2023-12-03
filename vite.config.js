@@ -1,5 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import autoprefixer from "autoprefixer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,17 +8,24 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "./src/styles/_variables.scss";`, // Si tienes un archivo de variables SCSS, puedes importarlo aquí
+        additionalData: `@import "./src/styles/_variables.scss";`,
       },
+    },
+    postcss: {
+      plugins: [autoprefixer],
     },
   },
   resolve: {
+    esbuild: {
+      jsxFactory: "React.createElement",
+      jsxFragment: "React.Fragment",
+    },
     alias: {
-      '@src': '/src',
-      '@components': '/src/components',
-      '@utils': '/src/utils',
-      '@assets': '/src/assets',
-      '@styles': '/src/styles',
+      "@src": "/src",
+      "@components": "/src/components",
+      "@utils": "/src/utils",
+      "@assets": "/src/assets",
+      "@styles": "/src/styles",
     },
   },
-})
+});

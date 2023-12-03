@@ -1,9 +1,45 @@
-import React from "react";
+// Navbar.js
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
-import './_navbar.scss';
+import "./_navbar.scss"; // Asegúrate de tener un archivo de estilos para tu componente
 import Logo from "@assets/image/logos/_horizontal.png";
 
+// Icons -
+import { FaBarsStaggered } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
+
+// Importa el archivo JSON
+import menuOptions from '@assets/router/index.json';
+
 const Navbar = () => {
+  const [isNavVisible, setIsNavVisible] = useState(false);
+  const navRef = useRef();
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setIsNavVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [navRef]);
+
+  const handleNavLinkClick = () => {
+    setIsNavVisible(false);
+  };
+
+  // const toggleNavVisibility = () => {
+  //   setIsNavVisible((prev) => !prev);
+  // };
+
+  const toggleNavButton = (IsNavActive) => {
+    setIsNavVisible(!IsNavActive);
+  };
+
   return (
     <header>
       <div className="B_blue" />
@@ -14,13 +50,17 @@ const Navbar = () => {
           </NavLink>
         </div>
 
-        <nav>
-          <NavLink to="/">Inicio</NavLink>
-          <NavLink to="/quezada-online">Quezada Online</NavLink>
-          <NavLink to="/quienes-somos">¿Quiénes somos?</NavLink>
-          <NavLink to="/sucursales">Sucursales</NavLink>
-          <NavLink to="/contacto">Contacto</NavLink>
-          <NavLink to="/blog">Blog</NavLink>
+        <nav className={isNavVisible ? "visible" : "hidden"} ref={navRef}>
+          <div className="togger" onClick={() => toggleNavButton(isNavVisible)}>
+            {!isNavVisible ? <FaBarsStaggered /> : <IoClose />}
+          </div>
+
+          {/* Mapea las opciones del menú desde el archivo JSON */}
+          {menuOptions.map((option, index) => (
+            <NavLink key={index} to={option.path} onClick={handleNavLinkClick}>
+              {option.label}
+            </NavLink>
+          ))}
         </nav>
       </div>
     </header>

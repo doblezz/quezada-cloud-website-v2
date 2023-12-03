@@ -1,35 +1,23 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/private/home";
-// import QuienesSomos from "./pages/quienes-somos";
-// import QuezadaOnline from "./pages/quezadaonline";
-// import Sucursales from "./pages/sucursales";
-// import Contacto from "./pages/contacto";
-// import Footer from "./components/footer/Footer";
-// import PageNotFound from "./pages/404";
-// import Blog from "./pages/Blog";
-// import Post from "./pages/Post";
-// Components
+import React, { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+const Home = lazy(() => import("./pages/private/home")); // Reemplaza 'Home' con el nombre real de tu componente
+// const QuezadaOnline = lazy(() => import('./'));
+import LazyLoading from "@components/LazyLoading";
 import Navbar from "@components/Navbar";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <div>
-      <Navbar />
+    <Router>
+      <Suspense fallback={<LazyLoading/>}>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="quezada-online" element={<QuezadaOnline />} />
-          <Route path="quienes-somos" element={<QuienesSomos />} />
-          <Route path="sucursales" element={<Sucursales />} />
-          <Route path="contacto" element={<Contacto />} />
-          <Route path="blog" element={<Blog />} />
-          <Route path="blog/post/:id" element={<Post />} /> */}
-          {/* <Route path="*" element={<PageNotFound />} /> */}
+          {/* <Route path="quezada-online" element={<QuezadaOnline />} /> */}
+          {/* ... otros componentes */}
         </Routes>
-        {/* <Footer /> */}
-      </div>
-    </BrowserRouter>
+      </Suspense>
+    </Router>
   );
 };
 

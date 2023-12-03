@@ -1,0 +1,26 @@
+[
+    {
+      "path": "/",
+      "label": "Inicio"
+    },
+    {
+      "path": "/quezada-online",
+      "label": "Quezada Online"
+    },
+    {
+      "path": "/quienes-somos",
+      "label": "¿Quiénes somos?"
+    },
+    {
+      "path": "/sucursales",
+      "label": "Sucursales"
+    },
+    {
+      "path": "/contacto",
+      "label": "Contacto"
+    },
+    {
+      "path": "/blog",
+      "label": "Blog"
+    }
+  ]
