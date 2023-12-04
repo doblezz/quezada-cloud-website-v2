@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import SwiperCore, { Autoplay, Navigation, EffectFade } from "swiper/core";
-import image1 from "@assets/Slider01.jpg";
-import image2 from "@assets/Slider02.jpeg";
-import image3 from "@assets/Slider02.jpeg";
+import image1 from "../../assets/Slider00.webp";
+import image2 from "../../assets/Slider01.jpg";
+import image3 from "../../assets/Slider02.jpeg";
+import image4 from "../../assets/Slider03.webp";
 import "./HeaderSlider.scss";
+import RequestButtonModal from "../Buttons/Request-button-modal";
 
 // Instala los módulos necesarios de Swiper
 SwiperCore.use([Autoplay, Navigation, EffectFade]);
@@ -35,6 +37,13 @@ const HeaderSlider = () => {
   const subInfo =
     "Cambiar divisas fácil y rápido, online o en una de nuestras sucursales.";
 
+  const IMAGES = {
+    image_1: image1,
+    image_2: image2,
+    image_3: image3,
+    image_4: image4,
+  };
+
   return (
     <>
       <Swiper
@@ -44,17 +53,14 @@ const HeaderSlider = () => {
         onSlideChange={handleSlideChange}
         className="swiper"
       >
-        <SwiperSlide style={{ backgroundImage: `url(${image1})` }}>
+        <SwiperSlide style={{ backgroundImage: `url(${IMAGES.image_1})` }}>
+          <img src={image1} />
           <div className="grid-container-swipper">
             <div className="column-1-swipper">
               <p>{subInfo}</p>
               <div className="barra_br"></div>
               <div className="constainer_solicitar_tasa_swipper">
-                {/* <Solicitar
-                  name={"Solicitar Tasa"}
-                  stylec={"solicitar_tasa_swipper"}
-                  className="solicitar_tasa_swipper"
-                /> */}
+                <RequestButtonModal name="Solicitar Tasa" position={"left"} />
               </div>
             </div>
             <div className="column-2-swipper">
@@ -65,7 +71,8 @@ const HeaderSlider = () => {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide style={{ backgroundImage: `url(${image1})` }}>
+        <SwiperSlide style={{ backgroundImage: `url(${IMAGES.image_4})` }}>
+          <img src={image4} />
           <div
             className={`animation-container ${
               activeIndex === 0 ? "active" : ""
@@ -73,11 +80,13 @@ const HeaderSlider = () => {
           >
             <div className="animation-show">
               <h3>Transferencias</h3>
+              <RequestButtonModal name="Solicitar Tasa" position={"center"} />
             </div>
           </div>
         </SwiperSlide>
 
-        <SwiperSlide style={{ backgroundImage: `url(${image2})` }}>
+        <SwiperSlide style={{ backgroundImage: `url(${IMAGES.image_3})` }}>
+          <img src={image3} />
           <div
             className={`animation-container ${
               activeIndex === 1 ? "active" : ""
@@ -85,11 +94,13 @@ const HeaderSlider = () => {
           >
             <div className="animation-show">
               <h3>Cambio de Divisas</h3>
+              <RequestButtonModal name="Solicitar Tasa" position={"center"} />
             </div>
           </div>
         </SwiperSlide>
 
-        <SwiperSlide style={{ backgroundImage: `url(${image3})` }}>
+        <SwiperSlide style={{ backgroundImage: `url(${IMAGES.image_2})` }}>
+          <img src={image2} />
           <div
             className={`animation-container ${
               activeIndex === 2 ? "active" : ""
@@ -97,6 +108,7 @@ const HeaderSlider = () => {
           >
             <div className="animation-show">
               <h3>Avances de efectivo con tarjeta</h3>
+              <RequestButtonModal name="Solicitar Tasa" position={"center"} />
             </div>
           </div>
         </SwiperSlide>

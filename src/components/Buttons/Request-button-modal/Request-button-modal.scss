@@ -1,0 +1,98 @@
+@import '@styles/_variables.scss';
+
+.description_swiper {
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  margin: 7px 0px;
+}
+
+button {
+  background-color: $green !important;
+  color: $white !important;
+  font-weight: 500 !important;
+  font-size: 1.1rem !important;
+}
+
+.MuiBox-root {
+  border-radius: 10px;
+  padding: 30px 30px;
+
+  .icon_contact {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75px;
+    height: 75px;
+    background-color: #89EC39;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 25px;
+    color: #377fb8;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .title {
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .solicitar_modal {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    justify-content: center;
+    align-self: center;
+    gap: 15px;
+    margin: 10px 0;
+
+    .preference {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 10px;
+      
+      a:nth-child(2),
+      a:nth-child(1) {
+        background-color: #377fb8;
+      }
+      
+      a {
+        border-radius: 8px;
+      }
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 15px;
+      color: white;
+      background-color: #89EC39;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+  }
+}
+
+/* Animations */
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.solicitar.MuiButtonBase-root {
+  animation: slide-in 1s ease-in-out;
+}
+
+.component.solicitar.MuiButtonBase-root {
+  animation: slide-in 1s ease-in-out;
+}

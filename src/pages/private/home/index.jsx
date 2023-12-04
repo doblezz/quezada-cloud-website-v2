@@ -1,6 +1,6 @@
 import React from "react";
 import PageHead from "@components/PageHead";
-import header from '@assets/title/index.json'
+import header from "@assets/title/index.json";
 // import { Helmet } from "react-helmet";
 // import NavBar from "../components/navbar/NavBar";
 // import SwiperNav from "../components/navbar/SwiperNav";
@@ -8,20 +8,19 @@ import header from '@assets/title/index.json'
 // import CHome from "../components/content-home/CHome";
 // import Loading from "../components/pageLoading/Loading";
 import HeaderSlider from "@components/HeaderSlider";
+// import RequestButtonModal from "@components/Buttons/Request-button-modal/";
 
 const Home = () => {
-
   return (
     <>
-    {/* Meta header */}
-    <PageHead
-      title={header.home.title}
-      description={header.home.description}
-    />
+      {/* Meta header */}
+      <PageHead
+        title={header.home.title}
+        description={header.home.description}
+      />
 
-    <HeaderSlider/>
-
-
+      <HeaderSlider />
+      {/* <RequestButtonModal name="Solicitar Tasa" position={'center'}/> */}
     </>
   );
 };
