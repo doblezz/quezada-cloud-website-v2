@@ -5,11 +5,12 @@ const Home = lazy(() => import("./pages/private/home")); // Reemplaza 'Home' con
 // const QuezadaOnline = lazy(() => import('./'));
 import LazyLoading from "@components/LazyLoading";
 import Navbar from "@components/Navbar";
+import './api/services/getRatesServices';
 
 const App = () => {
   return (
     <Router>
-      <Suspense fallback={<LazyLoading/>}>
+      <Suspense fallback={<LazyLoading />}>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />

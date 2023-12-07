@@ -9,6 +9,7 @@ import header from "@assets/title/index.json";
 // import Loading from "../components/pageLoading/Loading";
 import HeaderSlider from "@components/HeaderSlider";
 // import RequestButtonModal from "@components/Buttons/Request-button-modal/";
+import RatesBoard from './../../../components/Rates/index';
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
 
       <HeaderSlider />
       {/* <RequestButtonModal name="Solicitar Tasa" position={'center'}/> */}
+      <RatesBoard/>
     </>
   );
 };

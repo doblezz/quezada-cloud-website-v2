@@ -1,6 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import autoprefixer from "autoprefixer";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,10 +19,6 @@ export default defineConfig({
     },
   },
   resolve: {
-    esbuild: {
-      jsxFactory: "React.createElement",
-      jsxFragment: "React.Fragment",
-    },
     alias: {
       "@src": "/src",
       "@components": "/src/components",
@@ -28,4 +27,5 @@ export default defineConfig({
       "@styles": "/src/styles",
     },
   },
+  // Resto de tu configuración...
 });
