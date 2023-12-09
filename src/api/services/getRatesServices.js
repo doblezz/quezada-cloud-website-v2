@@ -1,52 +1,36 @@
 import axios from 'axios';
-import RatesOff from '../../assets/rates/ratesOffline.json';
+import ratesOffline from '../../assets/rates/ratesOffline.json';
 
-let previousRatesData = RatesOff; // Almacena las tasas anteriores
+// Definir las URLs de las APIs y el JSON local
+const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+const apiUrlAlt = import.meta.env.VITE_REACT_APP_API_URL_ALT;
+const ratesLocal = ratesOffline;
 
-async function fetchData() {
-  const urlRates = "https://acqbackend.onrender.com/api/rates";
+// Función para realizar la petición a la API principal
+const fetchRates = async () => {
   try {
-    const response = await axios.get(urlRates, { withCredentials: true });
+    // Hacer la solicitud a la API principal
+    const response = await axios.get(apiUrl);
+    // Devolver los datos de la respuesta
     return response.data;
   } catch (error) {
-    console.error('Error al obtener las tasas:', error.message);
-    // Si hay un error, devuelve un objeto con tasas en 00.00
-    return RatesOff;
+    // Manejar errores en la petición a la API principal
+    console.error(`Error en la petición a ${apiUrl}: ${error.message}`);
+    
+    try {
+      // Hacer la solicitud a la API alternativa
+      const response = await axios.get(apiUrlAlt);
+      // Devolver los datos de la respuesta
+      return response.data;
+    } catch (error) {
+      // Manejar errores en la petición a la API alternativa
+      console.warn(`Error en la petición a ${apiUrlAlt}.`);
+      console.warn('Cargando JSON local con valores en 0.0000');
+      // Devolver el JSON local en caso de fallo en ambas APIs
+      return ratesLocal;
+    }
   }
-}
+};
 
-async function fetchAndUpdateRates() {
-  const ratesData = await fetchData();
-
-  // Compara las tasas actuales con las anteriores
-  if (!areRatesEqual(ratesData, previousRatesData)) {
-    // Actualiza las tasas solo si son diferentes
-    updateRates(ratesData);
-    console.log('Tasas actualizadas:', ratesData);
-
-    // Actualiza las tasas anteriores
-    previousRatesData = ratesData;
-  } else {
-    console.log('Las tasas no han cambiado');
-  }
-}
-
-// Función para verificar si las tasas son iguales
-function areRatesEqual(rates1, rates2) {
-  // Implementa tu lógica de comparación aquí
-  // Puedes comparar propiedades específicas o utilizar una biblioteca como lodash para hacer una comparación profunda
-  return JSON.stringify(rates1) === JSON.stringify(rates2);
-}
-
-// Función para realizar la actualización de tasas (aquí debes implementar la lógica de actualización)
-function updateRates(newRates) {
-  // Implementa la lógica para actualizar las tasas en tu aplicación
-  // Por ejemplo, puedes almacenarlas en una base de datos, actualizar el estado de tu aplicación, etc.
-  // ...
-}
-
-// Llama a la función por primera vez
-fetchAndUpdateRates();
-
-// Configura el intervalo para llamar a la función cada 1 minuto (60,000 milisegundos)
-setInterval(fetchAndUpdateRates, 60000);
+// Exportar la función fetchRates para su uso en otros archivos
+export { fetchRates };
